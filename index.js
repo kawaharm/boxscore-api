@@ -1,18 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const mongoString = process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL;
 const routes = require("./routes/routes");
 
 // Connect Database
-mongoose.connect(mongoString);
-const database = mongoose.connection;
-// Error handling
-database.on("error", (error) => {
-  console.log(error);
+mongoose.connect(databaseUrl);
+const db = mongoose.connection;
+db.once("connected", () => {
+  console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
 });
-database.once("connected", () => {
-  console.log("Database Connected.");
+db.on("error", (error) => {
+  console.log(error);
 });
 
 const app = express();
