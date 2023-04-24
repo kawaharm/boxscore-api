@@ -17,11 +17,12 @@ db.on("error", (error) => {
 const app = express();
 app.use(express.json());
 
-// Connect to routes
-app.use("/api", routes);
+// // Connect to routes
+// app.use("/api", routes);
 
 // Controllers
 app.use("/scores", require("./controllers/scores"));
+app.use("/team", require("./controllers/team"));
 
 // Server
 const PORT = process.env.PORT || 3000;

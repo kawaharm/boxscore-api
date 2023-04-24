@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const nbaGame = process.env.NBA_GAME;
+const { Score } = require("../models");
 
 // GET
+// Get team scores
 router.get("/", async (req, res) => {
   await axios
     .get(nbaGame)
@@ -25,8 +27,14 @@ router.get("/team/home", async (req, res) => {
   }
 });
 
+// Pseudocode
+// Feed hits at most every 15 seconds
+// Static info: Team names, home/away, total innings/quarters
+// Dynamic info: scores, record, current inning/quarter
+
 // POST
-router.post("/post", async (req, res) => {
+// Fetch team period scores
+router.post("/post/score", async (req, res) => {
   //   res.send("Post API");
   const data = new Model({
     name: req.body.name,
