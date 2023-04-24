@@ -21,6 +21,9 @@ app.use(express.json());
 // Connect to routes
 app.use("/api", routes);
 
+// Controllers
+app.use("/scores", require("./controllers/scores"));
+
 // Server
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
