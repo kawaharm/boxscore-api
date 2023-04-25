@@ -21,11 +21,11 @@ app.use(express.json());
 // app.use("/api", routes);
 
 // Controllers
-app.use("/scores", require("./controllers/scores"));
-app.use("/team", require("./controllers/team"));
+app.use("/games", require("./controllers/games"));
+app.use("/teams", require("./controllers/teams"));
 
 // Server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8001;
 const server = app.listen(PORT, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${PORT} 🎧`);
 });

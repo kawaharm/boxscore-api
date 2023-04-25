@@ -12,6 +12,7 @@ const teamSchema = new Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
   fullName: { type: String, required: true },
+  isHomeTeam: Boolean,
   players: [{ type: Schema.Types.ObjectId, ref: "Player" }],
   scores: [{ type: Schema.Types.ObjectId, ref: "Score" }],
 });
