@@ -86,20 +86,32 @@ router.post("/", async (req, res) => {
 
       console.log(awayTeam);
     }
-    // const newGame = new Game({
-    //   scores: {
-    //     home: gameStats["home_period_scores"],
-    //     away: gameStats["away_period_scores"],
-    //   },
-    //   teams: {
-    //     home: homeTeam,
-    //     away: awayTeam,
-    //   },
-    // });
-    // newGame
-    //   .save()
-    //   .then((createdGame) => res.send(createdGame))
-    //   .catch((err) => console.log(err));
+    const newGame = new Game({
+      scores: {
+        home: gameStats["home_period_scores"],
+        away: gameStats["away_period_scores"],
+      },
+      teams: {
+        home: homeTeam,
+        away: awayTeam,
+      },
+    });
+    newGame
+      .save()
+      .then((createdGame) => res.send(createdGame))
+      .catch((err) => console.log(err));
+  }
+});
+
+// DELETE
+// Delete game by id
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Game.findByIdAndDelete(id);
+    res.send(`Document with ${data.name} has been deleted...`);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 
